@@ -1,4 +1,5 @@
 using Lab2_unit_testing;
+using System.Reflection;
 
 namespace MyDynamicMassiveTests
 {
@@ -14,13 +15,13 @@ namespace MyDynamicMassiveTests
             Assert.Equal(5, collection[0]);
         }
         [Fact]
-        public void Add_ThrowsArgumentNullException_WhenItemIsNull()
+        public void Add_SetNull_ArgumentNullException()
         {
             var collection = new MyDynamicMassive<string>(1);
             Assert.Throws<ArgumentNullException>(() => collection.Add(null));
         }
         [Fact]
-        public void Add_ResizesCollection_WhenCapacityIsExceeded()
+        public void Add_ResizesCollection_ChangingCapacity()
         {
             var collection = new MyDynamicMassive<int>(1);
             collection.Add(1);
@@ -39,6 +40,26 @@ namespace MyDynamicMassiveTests
         }
 
         //Clear method
+        [Fact]
+        public void Clear_SettingFiveItems_ClearingMassive()
+        {
+            var collection = new MyDynamicMassive<int>(5)
+            {
+                1,2,3,4,5
+            };
+            
+            collection.Clear();
+            Assert.Empty(collection);
+        }
+        [Fact]
+        public void Clear_SettingNull_NullReferenceException()
+        {
+            var collection = new MyDynamicMassive<string>(10);
+            typeof(MyDynamicMassive<string>).GetField("_items", BindingFlags.Instance | BindingFlags.NonPublic)?.SetValue(collection, null);
+
+            Assert.Throws<NullReferenceException>(() => collection.Clear());
+        }
+
 
 
 
