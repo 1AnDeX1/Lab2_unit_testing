@@ -1,0 +1,14 @@
+E:\KPI\C#\2\code\Lab2_unit_testing\Lab2_unit_testig\obj\Debug\net6.0\Lab2_unit_testing.GeneratedMSBuildEditorConfig.editorconfig
+E:\KPI\C#\2\code\Lab2_unit_testing\Lab2_unit_testig\obj\Debug\net6.0\Lab2_unit_testing.AssemblyInfoInputs.cache
+E:\KPI\C#\2\code\Lab2_unit_testing\Lab2_unit_testig\obj\Debug\net6.0\Lab2_unit_testing.AssemblyInfo.cs
+E:\KPI\C#\2\code\Lab2_unit_testing\Lab2_unit_testig\obj\Debug\net6.0\Lab2_unit_testing.csproj.CoreCompileInputs.cache
+E:\KPI\C#\2\code\Lab2_unit_testing\Lab2_unit_testig\bin\Debug\net6.0\Lab2_unit_testing.exe
+E:\KPI\C#\2\code\Lab2_unit_testing\Lab2_unit_testig\bin\Debug\net6.0\Lab2_unit_testing.deps.json
+E:\KPI\C#\2\code\Lab2_unit_testing\Lab2_unit_testig\bin\Debug\net6.0\Lab2_unit_testing.runtimeconfig.json
+E:\KPI\C#\2\code\Lab2_unit_testing\Lab2_unit_testig\bin\Debug\net6.0\Lab2_unit_testing.dll
+E:\KPI\C#\2\code\Lab2_unit_testing\Lab2_unit_testig\bin\Debug\net6.0\Lab2_unit_testing.pdb
+E:\KPI\C#\2\code\Lab2_unit_testing\Lab2_unit_testig\obj\Debug\net6.0\Lab2_unit_testing.dll
+E:\KPI\C#\2\code\Lab2_unit_testing\Lab2_unit_testig\obj\Debug\net6.0\refint\Lab2_unit_testing.dll
+E:\KPI\C#\2\code\Lab2_unit_testing\Lab2_unit_testig\obj\Debug\net6.0\Lab2_unit_testing.pdb
+E:\KPI\C#\2\code\Lab2_unit_testing\Lab2_unit_testig\obj\Debug\net6.0\Lab2_unit_testing.genruntimeconfig.cache
+E:\KPI\C#\2\code\Lab2_unit_testing\Lab2_unit_testig\obj\Debug\net6.0\ref\Lab2_unit_testing.dll

@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab2_unit_testig", "Lab2_unit_testig.csproj", "{37A4CD12-0A43-4547-A2E5-9523D9B340CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lab2_unit_testing", "Lab2_unit_testing.csproj", "{37A4CD12-0A43-4547-A2E5-9523D9B340CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyDynamicMassiveTests", "..\MyDynamicMassiveTests\MyDynamicMassiveTests.csproj", "{4A5DE5B1-73ED-4370-833E-DC82E861FD5E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyDynamicMassiveTests", "..\MyDynamicMassiveTests\MyDynamicMassiveTests.csproj", "{4A5DE5B1-73ED-4370-833E-DC82E861FD5E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

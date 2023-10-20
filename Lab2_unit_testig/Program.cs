@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Lab1
+namespace Lab2_unit_testing
 {
     class Program
     {

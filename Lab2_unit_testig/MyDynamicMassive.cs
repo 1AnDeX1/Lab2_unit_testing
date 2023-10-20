@@ -7,9 +7,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace Lab1
+namespace Lab2_unit_testing
 {
-    internal class MyDynamicMassive<T> : IList<T>
+    public class MyDynamicMassive<T> : IList<T>
     {
 
         private const int DefaultCapacity = 4;
