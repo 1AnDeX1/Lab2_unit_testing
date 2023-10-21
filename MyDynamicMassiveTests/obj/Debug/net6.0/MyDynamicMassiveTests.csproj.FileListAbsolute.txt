@@ -103,3 +103,8 @@ E:\KPI\C#\2\code\Lab2_unit_testing\MyDynamicMassiveTests\obj\Debug\net6.0\MyDyna
 E:\KPI\C#\2\code\Lab2_unit_testing\MyDynamicMassiveTests\obj\Debug\net6.0\MyDynamicMassiveTests.genruntimeconfig.cache
 E:\KPI\C#\2\code\Lab2_unit_testing\MyDynamicMassiveTests\obj\Debug\net6.0\ref\MyDynamicMassiveTests.dll
 E:\KPI\C#\2\code\Lab2_unit_testing\MyDynamicMassiveTests\bin\Debug\net6.0\CoverletSourceRootsMapping_MyDynamicMassiveTests
+E:\KPI\C#\2\code\Lab2_unit_testing\MyDynamicMassiveTests\bin\Debug\net6.0\Castle.Core.dll
+E:\KPI\C#\2\code\Lab2_unit_testing\MyDynamicMassiveTests\bin\Debug\net6.0\Moq.dll
+E:\KPI\C#\2\code\Lab2_unit_testing\MyDynamicMassiveTests\bin\Debug\net6.0\System.Diagnostics.EventLog.dll
+E:\KPI\C#\2\code\Lab2_unit_testing\MyDynamicMassiveTests\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Diagnostics.EventLog.Messages.dll
+E:\KPI\C#\2\code\Lab2_unit_testing\MyDynamicMassiveTests\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Diagnostics.EventLog.dll

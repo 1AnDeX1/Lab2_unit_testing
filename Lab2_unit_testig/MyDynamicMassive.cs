@@ -40,7 +40,6 @@ namespace Lab2_unit_testing
             _items = capacity is 0
                 ? Array.Empty<T>()
                 : new T[capacity];
-
         }
 
         public int Count => _size;

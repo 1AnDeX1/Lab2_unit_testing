@@ -1,10 +1,44 @@
 using Lab2_unit_testing;
+using Moq;
 using System.Reflection;
 
 namespace MyDynamicMassiveTests
 {
     public class MyDynamicMassiveTests
     {
+        //Constructor
+        [Theory]
+        [InlineData(4)]
+        [InlineData(6)]
+        [InlineData(34)]
+        public void Constructor_SetNormalCapacity_ChangingCapacity(int settedcapacity)
+        {
+            var capacity = settedcapacity;
+
+            var collection = new MyDynamicMassive<int>(capacity);
+            
+            Assert.Equal(settedcapacity, capacity);
+        }
+        [Theory]
+        [InlineData(-6)]
+        public void Constructor_SetWrongCapacity_ArgumentOutOfRangeException(int settedcapacity)
+        {
+            var capacity = settedcapacity;
+
+            void action() => new MyDynamicMassive<int>(capacity);
+
+            Assert.Throws<ArgumentOutOfRangeException>(action);
+        }
+        [Fact]
+        public void Constructor_SetZeroCapacity_InitializesPropertiesCorrectly()
+        {
+            var capacity = 0;
+
+            var collection = new MyDynamicMassive<int>(capacity);
+           
+            Assert.Equal(capacity, collection.Count);
+            Assert.Empty(collection);
+        }
         //Add method
         [Fact]
         public void Add_AddsItemToCollection_AddingItemAndIncreaceOfCapacity()
@@ -260,12 +294,48 @@ namespace MyDynamicMassiveTests
         [Fact]
         public void IndexOf_SetNullItem_ArgumentNullException()
         {
-            var collection = new MyDynamicMassive<string>(5) { "1", "2", "3", "4", "5" };
+            var collection = new MyDynamicMassive<string>(5) {"1", "2", "3", "4", "5"};
 
             void action() => collection.IndexOf(null);
 
             Assert.Throws<ArgumentNullException>(action);
         }
-        
+        //Insert
+        [Theory]
+        [InlineData(0, 5)]
+        [InlineData(1, 17)]
+        [InlineData(2, 15)]
+        [InlineData(3, 7)]
+        [InlineData(5, 32)]
+        public void Insert_InsertingIntoThirdPosition_ChanginItemIntoThirdPosition(int index, int item)
+        {
+            var collection = new MyDynamicMassive<int>(5) { 1, 2, 3, 4, 5 };
+
+            collection.Insert(index, item);
+            
+            Assert.Equal(6, collection.Count);
+            Assert.Equal(item, collection[index]);
+        }
+        [Fact]
+        public void Insert_SetNullItem_ArgumentNullException()
+        {
+            var collection = new MyDynamicMassive<string>(5) {"1", "2", "3", "4", "5"};
+
+            void action() => collection.Insert(1, null);
+
+            Assert.Throws<ArgumentNullException>(action);
+        }
+        [Theory]
+        [InlineData(-5, 17)]
+        [InlineData(23, 15)]
+        public void Insert_SetWrongIndex_ArgumentOutOfRangeException(int index, int item)
+        {
+            var collection = new MyDynamicMassive<int>(5) { 1, 2, 3, 4, 5 };
+
+            void action() => collection.Insert(index, item);
+
+            Assert.Throws<ArgumentOutOfRangeException>(action);
+        }
+
     }
 }
