@@ -112,7 +112,60 @@ namespace MyDynamicMassiveTests
 
             Assert.Throws<ArgumentNullException>(action);
         }
+        //CopyTo
+        [Fact]
+        public void CopyTo_SetArrayWithEqualLength_CopiedArray()
+        {
+            var mainCollection = new MyDynamicMassive<int>(5)
+            {
+                1,2, 3, 4, 5
+            };
+            int[] coppiedCollection = new int[5];
 
+            mainCollection.CopyTo(coppiedCollection, 0);
+
+            Assert.NotEmpty(coppiedCollection);
+            Assert.Equal(mainCollection, coppiedCollection);
+        }
+        [Fact]
+        public void CopyTo_SetArrayWithMoreLengthFromTheSecondElement_CopiedArray()
+        {
+            var collection = new MyDynamicMassive<int>(3)
+            {
+                1, 2, 3
+            };
+            var destinationArray = new int[5];
+            
+            collection.CopyTo(destinationArray, 1);
+            
+            Assert.Equal(new int[] { 0, 1, 2, 3, 0 }, destinationArray);
+        }
+        [Fact]
+        public void CopyTo_SetArrayWithLessLength_ArgumentException()
+        {
+            var mainCollection = new MyDynamicMassive<int>(5)
+            {
+                1,2, 3, 4, 5
+            };
+            int[] coppiedCollection = new int[4];
+
+            void action() => mainCollection.CopyTo(coppiedCollection, 0);
+
+            Assert.Throws<ArgumentException>(action);
+        }
+        [Fact]
+        public void CopyTo_SetNullArray_ArgumentNullException()
+        {
+            var mainCollection = new MyDynamicMassive<int>(5)
+            {
+                1,2, 3, 4, 5
+            };
+            int[]? coppiedCollection = null;
+
+            void action() => mainCollection.CopyTo(coppiedCollection, 0);
+
+            Assert.Throws<ArgumentNullException>(action);
+        }
 
     }
 }
