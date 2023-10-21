@@ -238,6 +238,34 @@ namespace MyDynamicMassiveTests
 
             Assert.Throws<ArgumentNullException>(action);
         }
+        //IndexOf
+        [Fact]
+        public void IndexOf_FindIndexOfNumber2_IndexOfNumber2()
+        {
+            var collection = new MyDynamicMassive<int>(5) { 1, 2, 3, 4, 5 };
+
+            var index = collection.IndexOf(2);
+
+            Assert.Equal(1, index);
+        }
+        [Fact]
+        public void IndexOf_SetUnExistedItem_OutputMinus1()
+        {
+            var collection = new MyDynamicMassive<int>(5) { 1, 2, 3, 4, 5 };
+
+            var index = collection.IndexOf(32);
+
+            Assert.Equal(-1, index);
+        }
+        [Fact]
+        public void IndexOf_SetNullItem_ArgumentNullException()
+        {
+            var collection = new MyDynamicMassive<string>(5) { "1", "2", "3", "4", "5" };
+
+            void action() => collection.IndexOf(null);
+
+            Assert.Throws<ArgumentNullException>(action);
+        }
         
     }
 }
