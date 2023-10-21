@@ -166,6 +166,50 @@ namespace MyDynamicMassiveTests
 
             Assert.Throws<ArgumentNullException>(action);
         }
+        //RemoveAt
+
+        [Fact]
+        public void RemoveAt_RemovingAtIndex0_RemovedItemAtIndex0()
+        {
+            var collection = new MyDynamicMassive<int>(5) { 1, 2, 3, 4, 5 };
+
+            collection.RemoveAt(0);
+
+            Assert.Equal(new int[] { 2, 3, 4, 5 }, collection);
+        }
+        [Fact]
+        public void RemoveAt_RemovingAtIndex2_RemovedItemAtIndex2()
+        {
+            var collection = new MyDynamicMassive<int>(5) { 1, 2, 3, 4, 5 };
+
+            collection.RemoveAt(2);
+
+            Assert.Equal(new int[]{1, 2, 4, 5}, collection);
+        }
+        [Fact]
+        public void RemoveAt_RemovingAtIndex0_RemovedItem2()
+        {
+            var collection = new MyDynamicMassive<int>(5) { 1, 2, 3, 4, 5 };
+            var size = collection.Count;
+
+            collection.RemoveAt(0);
+
+            Assert.Equal(size - 1 , collection.Count);
+            Assert.Equal(new int[] { 2, 3, 4, 5 }, collection);
+        }
+        [Theory]
+        [InlineData(-5)]
+        [InlineData(10)]
+        [InlineData(5)]
+        public void RemoveAt_SetWrongIndex_ArgumentOutOfRangeException(int index)
+        {
+            var collection = new MyDynamicMassive<int>(5) { 1, 2, 3, 4, 5 };
+
+            void action() => collection.RemoveAt(index);
+            
+            Assert.Throws<ArgumentOutOfRangeException>(action);
+        }
+        
 
     }
 }

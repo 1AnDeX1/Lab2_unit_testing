@@ -190,7 +190,7 @@ namespace Lab2_unit_testing
 
         public void RemoveAt(int index)
         {
-            if (index < 0 || index > _size)
+            if (index < 0 || index >= _size)
             {
                 throw new ArgumentOutOfRangeException(nameof(index), "Invalid index.");
             }
