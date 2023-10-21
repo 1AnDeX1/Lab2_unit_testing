@@ -209,7 +209,35 @@ namespace MyDynamicMassiveTests
             
             Assert.Throws<ArgumentOutOfRangeException>(action);
         }
-        
+        //Remove
 
+        [Fact]
+        public void Remove_RemovingItem1_RemovedItem1()
+        {
+            var collection = new MyDynamicMassive<int>(5) { 1, 2, 3, 4, 5 };
+
+            collection.Remove(1);
+
+            Assert.Equal(new int[] { 2, 3, 4, 5 }, collection);
+        }
+        [Fact]
+        public void Remove_RemovingItem4_RemovedItem4()
+        {
+            var collection = new MyDynamicMassive<int>(5) { 1, 2, 3, 4, 5 };
+
+            collection.Remove(4);
+
+            Assert.Equal(new int[] {1, 2, 3, 5 }, collection);
+        }
+        [Fact]
+        public void Remove_SetNull_ArgumentNullException()
+        {
+            var collection = new MyDynamicMassive<string>(5) {"1", "2", "3", "4", "5" };
+
+            void action() => collection.Remove(null);
+
+            Assert.Throws<ArgumentNullException>(action);
+        }
+        
     }
 }
