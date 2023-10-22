@@ -39,6 +39,78 @@ namespace MyDynamicMassiveTests
             Assert.Equal(capacity, collection.Count);
             Assert.Empty(collection);
         }
+        //Indexer
+        [Fact]
+        public void Indexer_GettingElementsFromArray_HaveAppropriateElement()
+        {
+            var collection = new MyDynamicMassive<int>(3);
+            collection.Add(1);
+            collection.Add(2);
+            collection.Add(3);
+
+            var resultofIndex0 = collection[0];
+            var resultofIndex1 = collection[1];
+            var resultofIndex2 = collection[2];
+
+            Assert.Equal(1, resultofIndex0);
+            Assert.Equal(2, resultofIndex1);
+            Assert.Equal(3, resultofIndex2);
+        }
+        [Theory]
+        [InlineData(-1)]
+        [InlineData(4)]
+        public void Indexer_GettingElementsFromArrayWithWrongIndex_HaveAppropriateElement(int settedIndex)
+        {
+            var index = settedIndex;
+            var collection = new MyDynamicMassive<int>(3);
+            collection.Add(1);
+            collection.Add(2);
+            collection.Add(3);
+
+            Action action = () => { var value = collection[settedIndex];};
+
+            Assert.Throws<IndexOutOfRangeException>(action);
+        }
+        [Fact]
+        public void Indexer_SetElementAtIndex1_ModifiesCorrectValueForIndex1()
+        {
+            // Arrange
+            var collection = new MyDynamicMassive<int>(3);
+            collection.Add(1);
+            collection.Add(2);
+            collection.Add(3);
+
+            collection[1] = 42;
+
+            Assert.Equal(1, collection[0]);
+            Assert.Equal(42, collection[1]);
+            Assert.Equal(3, collection[2]);
+        }
+        [Theory]
+        [InlineData(-1)]
+        [InlineData(4)]
+        public void Indexer_SettingElementsToArrayWithWrongIndex_HaveAppropriateElement(int settedIndex)
+        {
+            var index = settedIndex;
+            var collection = new MyDynamicMassive<int>(3);
+            collection.Add(1);
+            collection.Add(2);
+            collection.Add(3);
+
+            Action action = () => { collection[settedIndex] = 3; };
+
+            Assert.Throws<IndexOutOfRangeException>(action);
+        }
+        //ReadOnly
+        [Fact]
+        public void IsReadOnly_CheckOnFalse_ReturnsFalse()
+        {
+            var collection = new MyDynamicMassive<int>(3);
+
+            var isReadOnly = collection.IsReadOnly;
+
+            Assert.False(isReadOnly);
+        }
         //Add method
         [Fact]
         public void Add_AddsItemToCollection_AddingItemAndIncreaceOfCapacity()
