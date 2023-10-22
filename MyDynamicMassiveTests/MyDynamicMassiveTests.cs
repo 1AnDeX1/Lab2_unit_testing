@@ -1,5 +1,6 @@
 using Lab2_unit_testing;
 using Moq;
+using System.Collections.Generic;
 using System.Reflection;
 
 namespace MyDynamicMassiveTests
@@ -190,7 +191,6 @@ namespace MyDynamicMassiveTests
             bool result = collection.Contains(a);
 
             Assert.True(result);
-
         }
 
         [Theory]
@@ -410,9 +410,42 @@ namespace MyDynamicMassiveTests
         }
 
         //Enumerator class
+        //Enumerator
+        [Fact]
+        public void Enumerator_GettingNumber_AppropriateNumber()
+        {
+            var collection = new MyDynamicMassive<int>(3) { 1, 2, 3 };
 
+            var enumerator = collection.GetEnumerator();
+            enumerator.MoveNext();
+            var result = enumerator.Current;
 
+            Assert.Equal(1, result);
+        }
+        [Fact]
+        public void Enumerator_Current_ShouldThrowInvalidOperationExceptionIfCursorIsInvalid()
+        {
+            MyDynamicMassive<int> collection = new MyDynamicMassive<int>(3);
 
+            var enumerator = collection.GetEnumerator();
+            enumerator.MoveNext();
+
+            Assert.Throws<InvalidOperationException>(() =>
+            {
+                var current = enumerator.Current;
+            });
+        }
+        //Constructor
+        [Fact]
+        public void MyEnumerator_Constructor_NullList_ThrowsArgumentNullException()
+        {
+            MyDynamicMassive<int> list = null;
+
+            void action() => new MyDynamicMassive<int>.MyEnumerator(list);
+
+            Assert.Throws<ArgumentNullException>(action);
+        }
+        
         //MoveNext
         [Fact]
         public void MoveNext_SettingCursorIsBeforeTheStart_ReturnsTrueOnFirstCall()
@@ -435,16 +468,6 @@ namespace MyDynamicMassiveTests
 
             Assert.False(result);
         }
-        [Fact]
-        public void MoveNext_SetNullList_NullReferenceException()
-        {
-            MyDynamicMassive<int>? collection = null;
-
-            void action() => collection.GetEnumerator().MoveNext();
-
-            Assert.Throws<NullReferenceException>(action);
-        }
-
-
+    
     }
 }

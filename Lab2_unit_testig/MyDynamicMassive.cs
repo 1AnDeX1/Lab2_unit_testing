@@ -9,6 +9,8 @@ using System.Xml.Linq;
 
 namespace Lab2_unit_testing
 {
+    
+
     public class MyDynamicMassive<T> : IList<T>
     {
 
@@ -218,9 +220,7 @@ namespace Lab2_unit_testing
             _items = tempArray;
             _capacity = newCapacity;
         }
-
-
-        private class MyEnumerator : IEnumerator<T>
+        public class MyEnumerator : IEnumerator<T>
         {
 
             private MyDynamicMassive<T> _list;
@@ -231,10 +231,6 @@ namespace Lab2_unit_testing
             {
                 get
                 {
-                    if (_list == null)
-                    {
-                        throw new NullReferenceException("_list is null.");
-                    }
                     if (_cursor >= 0 && _cursor < _list._size)
                     {
                         return _list._items[_cursor];
@@ -265,10 +261,6 @@ namespace Lab2_unit_testing
 
             public bool MoveNext()
             {
-                if (_list == null)
-                {
-                    throw new NullReferenceException("_list is null.");
-                }
                 if (_cursor < _list.Count - 1)
                 {
                     _cursor++;
@@ -281,6 +273,7 @@ namespace Lab2_unit_testing
             {
                 _cursor = -1;
             }
+            
         }
     }
 }
