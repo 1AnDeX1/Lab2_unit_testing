@@ -409,5 +409,42 @@ namespace MyDynamicMassiveTests
             Assert.Throws<ArgumentOutOfRangeException>(action);
         }
 
+        //Enumerator class
+
+
+
+        //MoveNext
+        [Fact]
+        public void MoveNext_SettingCursorIsBeforeTheStart_ReturnsTrueOnFirstCall()
+        {
+            var collection = new MyDynamicMassive<int>(3){1,2,3};
+
+            var enumerator = collection.GetEnumerator();
+            bool moveNextResult = enumerator.MoveNext();
+
+            Assert.True(moveNextResult);
+        }
+        [Fact]
+        public void MoveNext_SettingCursorIsAtEnd_ReturnsFalse()
+        {
+            var collection = new MyDynamicMassive<int>(3) { 1, 2, 3 };
+
+            var enumerator = collection.GetEnumerator();
+            while (enumerator.MoveNext()) { } 
+            var result = enumerator.MoveNext();
+
+            Assert.False(result);
+        }
+        [Fact]
+        public void MoveNext_SetNullList_NullReferenceException()
+        {
+            MyDynamicMassive<int>? collection = null;
+
+            void action() => collection.GetEnumerator().MoveNext();
+
+            Assert.Throws<NullReferenceException>(action);
+        }
+
+
     }
 }
