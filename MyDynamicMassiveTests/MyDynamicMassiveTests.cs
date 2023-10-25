@@ -1,12 +1,15 @@
 using Lab2_unit_testing;
+using Microsoft.VisualStudio.TestPlatform.Utilities;
 using Moq;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Text;
 
 namespace MyDynamicMassiveTests
 {
     public class MyDynamicMassiveTests
     {
+        #region MyDynamicMassiveTesting
         //Constructor
         [Theory]
         [InlineData(4)]
@@ -117,7 +120,9 @@ namespace MyDynamicMassiveTests
         public void Add_AddsItemToCollection_AddingItemAndIncreaceOfCapacity()
         {
             var collection = new MyDynamicMassive<int>(1);
+
             collection.Add(5);
+
             Assert.Single(collection);
             Assert.Equal(5, collection[0]);
         }
@@ -408,8 +413,8 @@ namespace MyDynamicMassiveTests
 
             Assert.Throws<ArgumentOutOfRangeException>(action);
         }
-
-        //Enumerator class
+        #endregion
+        #region Enumerator class
         //Enumerator
         [Fact]
         public void Enumerator_GettingNumber_AppropriateNumber()
@@ -468,6 +473,168 @@ namespace MyDynamicMassiveTests
 
             Assert.False(result);
         }
-    
+        //[Fact]
+        //public void MoveNext_SettingCursorIsAtEnd_Retue()
+        //{
+        //    MyDynamicMassive<int>.MyEnumerator list = null;
+
+
+        //    void action() => list?.MoveNext();
+
+        //    Assert.Throws<ArgumentNullException>(action);
+        //}
+        #endregion
+        #region EventMethodsTesting
+        [Fact]
+        public void CollectionClearedHandler_ShouldPrintMessageToConsole()
+        {
+            // Arrange
+            var eventInfo = new EventInfo<int>
+            {
+                Action = "Clear",
+                Item = 0 // Встановлюємо значення за замовчуванням для int
+            };
+
+            // Act
+            var capturedOutput = CaptureOutput(() => EventMethods<int>.CollectionClearedHandler(null, eventInfo));
+
+            // Assert
+            Assert.Contains("Колекція була очищена. Дія: Clear", capturedOutput);
+        }
+        [Fact]
+        public void ItemAddedHandler_ShouldPrintMessageToConsole()
+        {
+            // Arrange
+            var eventInfo = new EventInfo<int>
+            {
+                Action = "Add",
+                Item = 5
+            };
+
+            // Act
+            var capturedOutput = CaptureOutput(() => EventMethods<int>.ItemAddedHandler(null, eventInfo));
+
+            // Assert
+            Assert.Contains("Додано елемент 5. Дія: Add", capturedOutput);
+        }
+
+        [Fact]
+        public void ItemRemovedHandler_ShouldPrintMessageToConsole()
+        {
+            // Arrange
+            var eventInfo = new EventInfo<int>
+            {
+                Action = "Remove",
+                Item = 10
+            };
+
+            // Act
+            var capturedOutput = CaptureOutput(() => EventMethods<int>.ItemRemovedHandler(null, eventInfo));
+
+            // Assert
+            Assert.Contains("Видалено елемент 10. Дія: Remove", capturedOutput);
+        }
+
+        [Fact]
+        public void ItemAddedToBeginningHandler_ShouldPrintMessageToConsole()
+        {
+            // Arrange
+            var eventInfo = new EventInfo<int>
+            {
+                Action = "AddToBeginning",
+                Item = 3
+            };
+
+            // Act
+            var capturedOutput = CaptureOutput(() => EventMethods<int>.ItemAddedToBeginningHandler(null, eventInfo));
+
+            // Assert
+            Assert.Contains("Додано елемент 3 на початок. Дія: AddToBeginning", capturedOutput);
+        }
+
+        [Fact]
+        public void ItemAddedToEndHandler_ShouldPrintMessageToConsole()
+        {
+            // Arrange
+            var eventInfo = new EventInfo<int>
+            {
+                Action = "AddToEnd",
+                Item = 8
+            };
+
+            // Act
+            var capturedOutput = CaptureOutput(() => EventMethods<int>.ItemAddedToEndHandler(null, eventInfo));
+
+            // Assert
+            Assert.Contains("Додано елемент 8 в кінець. Дія: AddToEnd", capturedOutput);
+        }
+
+        [Fact]
+        public void ItemRemovedAtHandler_ShouldPrintMessageToConsole()
+        {
+            // Arrange
+            var eventInfo = new EventInfo<int>
+            {
+                Action = "RemoveAt",
+                Item = 2
+            };
+
+            // Act
+            var capturedOutput = CaptureOutput(() => EventMethods<int>.ItemRemovedAtHandler(null, eventInfo));
+
+            // Assert
+            Assert.Contains("Видалено елемент 2 за індексом. Дія: RemoveAt", capturedOutput);
+        }
+        [Fact]
+        public void ContainsCheckHandler_ShouldPrintMessageToConsole()
+        {
+            // Arrange
+            var eventInfo = new EventInfo<int>
+            {
+                Action = "ContainsCheck",
+                Item = 7
+            };
+
+            // Act
+            var capturedOutput = CaptureOutput(() => EventMethods<int>.ContainsCheckHandler(null, eventInfo));
+
+            // Assert
+            Assert.Contains("Викликаний метод Contains з параметром 7. Дія: ContainsCheck", capturedOutput);
+        }
+
+        [Fact]
+        public void IndexOfCheckHandler_ShouldPrintMessageToConsole()
+        {
+            // Arrange
+            var eventInfo = new EventInfo<int>
+            {
+                Action = "IndexOfCheck",
+                Item = 4
+            };
+
+            // Act
+            var capturedOutput = CaptureOutput(() => EventMethods<int>.IndexOfCheckHandler(null, eventInfo));
+
+            // Assert
+            Assert.Contains("Викликаний метод IndexOf з параметром 4. Дія: IndexOfCheck", capturedOutput);
+        }
+
+        private string CaptureOutput(Action action)
+        {
+            var output = new StringBuilder();
+            var originalOutput = Console.Out;
+            Console.SetOut(new StringWriter(output));
+
+            try
+            {
+                action.Invoke();
+                return output.ToString().Trim();
+            }
+            finally
+            {
+                Console.SetOut(originalOutput);
+            }
+        }
+        #endregion
     }
 }

@@ -10,6 +10,10 @@ namespace Lab2_unit_testing
     {
         public string Action { get; set; }
         public T? Item { get; set; }
+        public EventInfo()
+        {
+            
+        }
 
         public EventInfo(string action, T? item)
         {

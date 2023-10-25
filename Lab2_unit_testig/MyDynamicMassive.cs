@@ -261,6 +261,10 @@ namespace Lab2_unit_testing
 
             public bool MoveNext()
             {
+                if (_list == null)
+                {
+                    throw new ArgumentNullException(nameof(_list), "List cannot be null.");
+                }
                 if (_cursor < _list.Count - 1)
                 {
                     _cursor++;

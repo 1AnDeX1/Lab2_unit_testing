@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
 
 namespace Lab2_unit_testing
 {
+    [ExcludeFromCodeCoverage]
     class Program
     {
         public static void Main(string[] args)
